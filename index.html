@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>My Page Title</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="js/vue.js"></script>
+    </head>
+    <body>
+        <div id="app" class="container">
+        <!-- vue instance is bound to this element -->
+            <div class="row">
+                <div class="col col-lg-4 mx-auto">
+                    <h5>{{pageTitle}}</h5>
+                    <p v-bind:title="hoverTitle">Hover over me</p>
+                    <a v-bind:href="url" class="btn btn-outline-primary">Sport</a>
+                    <div v-if="showAlertDanger" class="alert alert-danger">I am a danger alert</div>
+                    <div v-else class="alert alert-info">I am an info alert</div>
+                    <button v-on:click="toggleAlert" class="btn btn-outline-primary mb-2">Toggle alert</button>
+                </div>
+            </div>
+            <div class="row">
+                <div v-for="person in people" class="col col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{person.name}}</h5>
+                            <h6 class="card-text">{{person.city}}</h6>
+                        </div>
+                    </div>
+                </div>
+                <!-- add person form -->
+            </div>
+            <button v-on:click="showPersonForm" class="btn btn-outline-primary">Add person</button>
+                
+            <div class="row">
+                <div v-if="showAddPersonForm" class="col col-lg-4">
+                    <form v-on:submit.prevent="addPersonToPeople">
+                        <div class="form-group">
+                            <label class="form-label">Name:</label>
+                            <input v-model="person.name" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">City:</label>
+                            <input v-model="person.city" class="form-control"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </form>
+                </div>
+            </div>
+            <!-- two way binding -->
+            <div class="form-group">
+                <p class="form-element">{{message}}</p>
+                <input v-model="message" class="form-element"/>
+            </div>
+            <!-- events -->
+            <div class="form-group">
+                <p class="form-element">{{counter}}</p>
+                <button v-on:click="increment" class="btn btn-outline-primary">Increment</button>
+            </div>
+        <!-- end of vue instance element -->
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="js/app.js"></script>
+    </body>
+</html>
