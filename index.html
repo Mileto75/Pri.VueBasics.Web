@@ -7,6 +7,7 @@
         <title>My Page Title</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.js" integrity="sha512-yyr/AZnf9KbRjIKQpglQyZeyz2sOJCa0bcAt+qBnY/jfatfojXGz3eymOoZisKcIv9P49K/PzSJwdL5dwOfgGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="js/vue.js"></script>
     </head>
     <body>
@@ -49,6 +50,13 @@
                         <button type="submit" class="btn btn-primary">Add</button>
                     </form>
                 </div>
+            </div>
+            <button v-on:click="getQuote" class="btn btn-outline-primary">Get quote</button>
+            <div v-if="!quoteError" class="alert alert-info">
+                {{quote}}
+            </div>
+            <div v-else class="alert alert-danger">
+                {{quoteErrorMessage}}
             </div>
             <!-- two way binding -->
             <div class="form-group">

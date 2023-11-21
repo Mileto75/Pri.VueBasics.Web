@@ -7,6 +7,7 @@ let app = new Vue({
         url: "https://www.gazzetta.it",
         showAlertDanger: true,
         counter: 0,
+        quoteVisible: false,
         showAddPersonForm: false,
         person: {name:"",city:""},
         people: [
@@ -15,6 +16,13 @@ let app = new Vue({
             {name: "Joachim",city: "Brugge"},
         ],
         message: "",
+        quote: "",
+        quoteError: false,
+        quoteErrorMessage: "",
+        quoteUrl: "https://api.chucknorri.io/jokes/random"
+    },
+    created: async function() {
+        //await this.getQuote();
     },
     methods: {
         increment: function() {
@@ -31,5 +39,24 @@ let app = new Vue({
             this.person.name = "";
             this.person.city = "";
         },
+        getQuote: async function() {
+           //fetch a quote from chucknorris api
+           this.quoteError = false;
+           this.quote = await axios.get(this.quoteUrl)
+                    .then(response => response.data.value)
+                    .catch(error => {
+                        this.quoteError = true;
+                        this.quoteErrorMessage = error
+                        console.log(error);
+                    });
+        //    this.quote =  await fetch(this.quoteUrl)
+        //                     .then(response => response.json())
+        //                     .then(data => data.value)
+        //                     .catch(error => 
+        //                         {
+        //                             this.quoteError = true;
+        //                             this.quoteErrorMessage = error;
+        //                         })
+        }
     },
 });
